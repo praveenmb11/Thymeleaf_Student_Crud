@@ -1,0 +1,1 @@
+Using ThymeLeaf we can write Java code in the html file , its used to create web applications, here above th econtroller class we should write @controller insted of @restccontroller , because @rest controller is used to create restAPI.
