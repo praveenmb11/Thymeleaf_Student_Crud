@@ -5,9 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -20,16 +20,22 @@ public class StdController {
 	@Autowired
 	StudentService studentService;
 
+	@GetMapping("/")
+	public String home() {
+		return "home";
+	}
+	
 	@GetMapping("/ih")
 	public String view() {
 		return "insert";
 	}
 
 	@PostMapping("/insert")
-	@ResponseBody
-	public Student insert(@ModelAttribute Student student) {
+	//@ResponseBody
+	public String insert(@ModelAttribute Student student,ModelMap modelMap) {
 		studentService.insert(student);
-		return student;
+		modelMap.put("message", "Data Inserted");
+		return "home";
 	}
 
 	@GetMapping("/find")
@@ -39,9 +45,10 @@ public class StdController {
 	}
 
 	@GetMapping("/fall")
-	@ResponseBody
-	public List<Student> fetchall() {
-		return studentService.fetchall();
+//	@ResponseBody
+	public String fetchall(ModelMap modelMap) {
+		 modelMap.put("students", studentService.fetchall());
+		 return "fetch";
 	}
 	@GetMapping("/did")
 	@ResponseBody

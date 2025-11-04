@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table border="">
+<tr >
+<th >Id</th>
+<th >Name</th>
+</tr>
+<tr th:each="s:${students}">
+<td th:text=${s.sid}></td>
+<td th:text=${s.sname}></td>
+</tr>
+
+</table>
+</body>
+</html>
